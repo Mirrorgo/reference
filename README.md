@@ -23,7 +23,10 @@ from:[this](https://codeguide.co/#css-prefixed-properties)
   * 对各部分分组,优先级最高
 
 数量符号
-
+* *
+  * 可以出现任意次数
+* +
+  * 可以出现一次或多次
 
 ---
 属性排序
