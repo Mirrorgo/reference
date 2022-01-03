@@ -1,0 +1,70 @@
+布局 {
+  显示 {
+    display: block;
+    visibility: inherit;
+  }
+  溢出 {
+    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+  浮动 {
+    float: left;
+    clear: both;
+  }
+  定位 {
+    position: relative;
+    left: auto;
+    right: inherit;
+    top: auto;
+    bottom: auto;
+    z-index: auto;
+  }
+  列表 {
+    list-style: circle; //一个简写属性集合, 包括以下三者, 无顺序
+    list-style-type: circle;
+    list-style-position: inside;
+    list-style-image: none;
+  }
+  表格 {
+    table-layout: auto;
+    border-collapse: collapse;
+    border-spacing: 0em;
+    caption-side: bottom;
+    empty-cells: hide;
+  }
+  弹性 {
+    flex-flow: column; //👇两者的简写
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    justify-content: baseline;
+    align-content: center;
+    align-items: flex-end;
+    align-self: auto;
+    flex: auto;
+    flex-grow: inherit;
+    flex-shrink: initial;
+    flex-basis: auto;
+    order: unset;
+  }
+  多列 {
+    columns: auto;
+    column-width: auto;
+    column-gap: normal;
+    column-rule: 0em;
+    column-rule-width: 0vw;
+    column-rule-style: dashed;
+    column-rule-color: green;
+    column-span: all;
+    column-fill: auto;
+    /* 下面这个只有webkit有? */
+
+    -webkit-column-break-before: always;
+    -webkit-column-break-after: avoid;
+    -webkit-column-break-inside: auto;
+  }
+  格栅 {
+    grid-column: auto;
+    grid-row: span;
+  }
+}
