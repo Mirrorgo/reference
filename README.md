@@ -7,7 +7,13 @@ from:[this](https://codeguide.co/#css-prefixed-properties)
           box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 ```
-
+```
+<baseline-position> = [ first | last ]? baseline
+<content-distribution> = space-between | space-around | space-evenly | stretch
+<overflow-position> = unsafe | safe
+<content-position> = center | start | end | flex-start | flex-end
+<self-position> = center | start | end | self-start | self-end | flex-start | flex-end
+```
 > 点击面包屑快速跳转到对应的分类
 
 组合符号
@@ -32,7 +38,7 @@ from:[this](https://codeguide.co/#css-prefixed-properties)
 * {A,B}
   * 出现最少A次,最多B次
 * \#
-  * 可以出现一次多多次,但多次出现时必须以逗号分隔
+  * 可以出现一次或多次,但多次出现时必须以逗号分隔
 * !
   * 表示当前分组必须产生一个值,多出现在组合符号方括号的后面
 
@@ -55,7 +61,7 @@ from:[this](https://codeguide.co/#css-prefixed-properties)
 * 模型：box-sizing
 * 边距：margin margin-left margin-right margin-top margin-bottom
 * 填充：padding padding-left padding-right padding-top padding-bottom
-* 边框：border border-width border-style border-color border-colors border-[direction]-<param>
+* 边框：border border-width border-style border-color border-[direction]-<param>
 * 圆角：border-radius border-top-left-radius border-top-right-radius border-bottom-left-radius border-bottom-right-radius
 * 框图：border-image border-image-source border-image-slice border-image-width border-image-outset border-image-repeat
 * 大小：width min-width max-width height min-height max-height
@@ -66,7 +72,7 @@ from:[this](https://codeguide.co/#css-prefixed-properties)
 * 背景：background background-color background-image background-repeat background-repeat-x background-repeat-y background-position background-position-x background-position-y background-size background-origin background-clip background-attachment bakground-composite
 * 遮罩：mask mask-mode mask-image mask-repeat mask-repeat-x mask-repeat-y mask-position mask-position-x mask-position-y mask-size mask-origin mask-clip mask-attachment mask-composite mask-box-image mask-box-image-source mask-box-image-width mask-box-image-outset mask-box-image-repeat mask-box-image-slice
 * 滤镜：box-shadow box-reflect filter mix-blend-mode opacity,
-* 裁剪：object-fit clip
+* 裁剪：object-fit clip-path
 * 事件：resize zoom cursor pointer-events touch-callout user-modify user-focus user-input user-select user-drag
 
 

@@ -1,0 +1,33 @@
+.flex-grow #content {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  align-items: stretch;
+  width: 50vw;
+}
+.flex-grow .box {
+  flex-grow: 1;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+}
+.flex-grow .box1 {
+  flex-grow: 2;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+}
+.grid .wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 100px;
+}
+.grid .wrapper .box1 {
+  background-color: gray;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.grid .wrapper .box2 {
+  background-color: darkorange;
+  grid-column-start: 1;
+  grid-row-start: 3;
+  grid-row-end: 5;
+}

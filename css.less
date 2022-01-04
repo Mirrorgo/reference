@@ -37,26 +37,32 @@
     flex-flow: column; //👇两者的简写
     flex-direction: column-reverse;
     flex-wrap: nowrap;
-    justify-content: baseline;
-    align-content: center;
+    justify-content: space-between; //main-axis方向
+    align-content: center; //cross-axis方向
+    /* 
+    align-content VS align-items => 对于4*4的格子中的8个物品
+    align-content:start会将物品放在 0和1 行
+    align-items:start会将物品放在 0和2 行,相当于对每个item执行了一个align-self
+     */
     align-items: flex-end;
     align-self: auto;
-    flex: auto;
-    flex-grow: inherit;
-    flex-shrink: initial;
-    flex-basis: auto;
-    order: unset;
+    flex: auto; //👇三者的简写 => https://www.cnblogs.com/LangZ-/p/12703858.html⭐
+    flex-grow: inherit; // 默认为0,flex-grow为n的项目，占据的空间（放大的比例）是flex-grow为1的n倍
+    flex-shrink: initial; //默认为1,flex元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值
+    flex-basis: auto; //主轴方向上的初始大小.当一个元素同时被设置了flex-basis和 width时,flex-basis 具有更高的优先级.
+    order: unset; // 仅用于不同的视觉顺序
   }
   多列 {
-    columns: auto;
+    columns: auto; //👇二者的简写
     column-width: auto;
-    column-gap: normal;
-    column-rule: 0em;
+    column-count: auto;
+    column-gap: normal; //normal(默认值):在多列布局时默认间隔为1em，其他类型布局默认间隔为0。
+    column-rule: 0em; //👇三者的简写 用法同border
     column-rule-width: 0vw;
     column-rule-style: dashed;
     column-rule-color: green;
-    column-span: all;
-    column-fill: auto;
+    column-span: all; //横跨多少列
+    column-fill: auto; //balance:对列进行协调。浏览器应对列长度的差异进行最小化处理||auto:按顺序对列进行填充，列长度会各有不同。
     /* 下面这个只有webkit有? */
 
     -webkit-column-break-before: always;
@@ -64,7 +70,97 @@
     -webkit-column-break-inside: auto;
   }
   格栅 {
+    // ⭐网格布局:http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html
+    //练习:https://codepip.com/games/grid-garden/
     grid-column: auto;
-    grid-row: span;
+    grid-row: auto;
+  }
+}
+尺寸 {
+  模型 {
+    box-sizing: border-box; //默认content-box,width = content宽度;border-box:width=content+padding+border
+  }
+  边距,
+  填充 {
+    margin: auto; //包含 margin-top margin-right margin-bottom margin-left
+    padding: 0em; //包含 padding-top padding-right padding-bottom padding-left
+  }
+  边框 {
+    border: 0rem;
+    border-width: 0rem;
+    border-style: dashed;
+    border-color: black;
+    border-top-style: 0%; //border-[direction]-<param>
+  }
+  圆角 {
+    border-radius: 0%;
+    border-top-left-radius: 0%; //border-[direction1-direction2]-radius
+  }
+  框图 {
+    // 用于实现一些花里胡哨的效果
+    border-image: none; //👇五个的简写
+    border-image-source: none;
+    border-image-slice: 100%;
+    border-image-width: 1;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+  }
+  大小 {
+    width: auto;
+    min-width: none;
+    max-width: fit-content;
+    height: auto;
+    min-height: fit-content;
+    max-height: max-content;
+  }
+}
+界面 {
+  外观 {
+    appearance: textfield; //🧪
+  }
+  轮廓 {
+    outline: auto; //👇三者的简写
+    outline-width: 0.1rem;
+    outline-style: dotted;
+    outline-color: black;
+    outline-offset: 0em; //设置outline与一个元素边缘或边框之间的间隙
+  }
+  背景 {
+    //可以一次性设置多个背景层,用逗号分隔
+    background: fixed; //一次性集中定义各种背景属性，包括 color, image, origin 与 size, repeat 方式等等。
+    background-color: orange;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    background-origin: padding-box; //指定背景图片background-image 属性的原点位置的背景相对区域.
+    background-clip: border-box; //设置元素的背景（背景图片或颜色）是否延伸到边框、内边距盒子、内容盒子下面
+    background-attachment: fixed; //决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动
+  }
+  遮罩 {
+    mask: none; //❓这是什么 => 这里有一系列待补充,需要用再学
+  }
+  滤镜 {
+    box-shadow: none; //使用可视化工具生成👉https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Backgrounds_and_Borders/Box-shadow_generator
+    filter: blur(); //直接生成模糊,不同颜色的滤镜等效果
+    mix-blend-mode: color; //描述了元素的内容应该与元素的直系父元素的内容和元素的背景如何混合
+    opacity: 0.1;
+  }
+  裁剪 {
+    object-fit: contain; //指定可替换元素的内容应该如何适应到其使用的高度和宽度确定的框,比如图片时fill还是contain
+    clip-path: auto; //对图片等内容进行各式各样的裁剪,可剪成各种形状
+  }
+  事件 {
+    resize: both; //设置是否可调节大小,包括横向纵向和both
+    cursor: pointer;
+    pointer-events: none; //指定在什么情况下 (如果有) 某个特定的图形元素可以成为鼠标事件的 target=>比如:鼠标指针只有再元素边界上的时候才能成为鼠标事件的target
+    touch-action: auto; //设置触摸屏用户如何操纵元素的区域
+    user-select: all; //控制选中文本:点击一次选中所有/无法选中/正常
+  }
+}
+文字 {
+  模式 {
+    //开始
+    line-height: normal;
   }
 }
