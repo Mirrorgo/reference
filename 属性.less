@@ -13,6 +13,7 @@
     float: left; //仅图文环绕使用float,其他时候不要使用
     clear: both;
   }
+
   定位 {
     position: relative; //position:absolute是相对于最近的非static元素定位,比如设置父元素为relative
     left: auto;
@@ -79,14 +80,39 @@
     flex-shrink: initial; //默认为1,flex元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值
     flex-basis: auto; //主轴方向上的初始大小.当一个元素同时被设置了flex-basis和 width时,flex-basis 具有更高的优先级.
     /* 
-    flex属性很有意思,隐藏了很多细节
-    
+    flex-grow规定了 flex-grow 项在 flex 容器中分配剩余空间的相对比例。 
+    主尺寸是项的宽度或高度，这取决于flex-direction值。
+    剩余空间是 flex 容器的大小减去所有 flex 项的大小加起来的大小。
+    如果所有的兄弟项目都有相同的 flex-grow 系数，
+    那么所有的项目将剩余空间按相同比例分配，
+    否则将根据不同的 flex-grow 定义的比例进行分配。
+    flex-shrink则是需要缩小的时候,各部分的比例,数字比较大的占的份额大
+    比如a设置为2,则最终比例(space-a):(space-b):(space-c) 为 2:1:1
+    和fr不同!!!👆
+    */
+    /* 
+    flex属性很有意思,隐藏了很多细节:
+    flex默认值为0 1 auto
+    flex:auto为1 1 auto
+    flex:none为0 0 auto
+    TODO:对照书上的内容
+    大多数场景下,推荐flex使用单值语法,而不是完整的三值或者二值语法
      */
     order: unset; // 仅用于不同的视觉顺序,默认为0,如果想要某个子项显示在最前方,设置为负数即可
   }
-  格栅 {
-    grid-template-columns: 100px, 100px, 1fr;
-    grid-template-rows: 100px, auto;
+  网格 {
+    grid: none; //⭐推荐使用grid缩写属性替代grid-template缩写属性,因为浏览器会帮助重置一些隐式的属性
+    grid-template:
+      "葡萄 葡萄 葡萄" 1fr
+      "龙虾 养鱼 养鱼" 1fr
+      "龙虾 养鱼 养鱼" 1fr
+      "西瓜 西瓜 西瓜" 1fr
+      /1fr 1fr 1fr; //👇以下三者的缩写
+    grid-template-columns: 100px 100px 1fr;
+    grid-template-rows: [line1]100px [line2]auto;
+    grid-template-areas:
+      "egg egg apple "
+      ". fish fish"; //.表示空的单元格
     // ⭐网格布局:http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html
     //练习:https://codepip.com/games/grid-garden/
     grid-column: auto;
@@ -96,6 +122,10 @@
     grid-column-start: 1;
     grid-row-end: 3;
     grid-column-end: 3;
+    grid-auto-flow: dense; // [ row | column ] || dense
+    //设置隐式网格(任何自动生成的网格)的尺寸
+    grid-auto-rows: 60px;
+    grid-auto-columns: 60px;
   }
 }
 尺寸 {

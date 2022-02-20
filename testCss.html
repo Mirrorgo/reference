@@ -5,35 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./testCss.css" />
+    <!-- 使用方法: lessc testCss.less > testCss.css -->
     <title>Document</title>
   </head>
   <body>
-    <div class="flex-grow">
-      <h4>This is a Flex-Grow</h4>
-      <h5>A,B,C and F are flex-grow:1 . D and E are flex-grow:2 .</h5>
-      <div id="content">
-        <div class="box" style="background-color: red">A</div>
-        <div class="box" style="background-color: lightblue">B</div>
-        <div class="box" style="background-color: yellow">C</div>
-        <div class="box1" style="background-color: brown">D</div>
-        <div class="box1" style="background-color: lightgreen">E</div>
-        <div class="box" style="background-color: brown">F</div>
-      </div>
+    <div class="flex">
+      <div style="background-color: blue" class="box-of-flex1">box</div>
+      <div style="background-color: red" class="box-of-flex2">box</div>
+      <div style="background-color: yellow" class="box-of-flex3">box</div>
     </div>
     <div class="grid">
-      <div class="wrapper">
-        <div class="box1">One</div>
-        <div class="box2">Two</div>
-        <div class="box3">Three</div>
-        <div class="box4">Four</div>
-        <div class="box5">Five</div>
-      </div>
-    </div>
-    <br />
-    <div class="flex">
-      <div style="background-color: blue" class="box-of-flex">box</div>
-      <div style="background-color: red">box</div>
-      <div style="background-color: yellow">box</div>
+      <div class="grid1" style="background-color: hsl(229, 50%, 80%)">a</div>
+      <div class="grid2" style="background-color: rgb(200, 255, 0)">b</div>
+      <div class="grid3" style="background-color: rgb(0, 255, 55)">c</div>
+      <div class="grid4" style="background-color: rgb(255, 0, 21)">d</div>
     </div>
   </body>
 </html>

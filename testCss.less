@@ -1,50 +1,44 @@
-.flex-grow {
-  #content {
-    display: flex;
-    justify-content: space-around;
-    flex-flow: row wrap;
-    align-items: stretch;
-    width: 50vw;
-  }
-
-  .box {
-    flex-grow: 1;
-    border: 3px solid rgba(0, 0, 0, 0.2);
-  }
-
-  .box1 {
-    flex-grow: 2;
-    border: 3px solid rgba(0, 0, 0, 0.2);
-  }
-}
-
-.grid {
-  .wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 100px;
-    .box1 {
-      background-color: gray;
-      grid-column-start: 1;
-      grid-column-end: 4;
-      grid-row-start: 1;
-      grid-row-end: 3;
-    }
-
-    .box2 {
-      background-color: darkorange;
-      grid-column-start: 1;
-      grid-row-start: 3;
-      grid-row-end: 5;
-    }
-  }
-}
 .flex {
-  border: 1px black dotted;
   display: flex;
+  border: 1px black dotted;
+  width: 300px;
+  .box-of-flex1 {
+    /* flex: auto; */
+    flex-grow: 1;
+    flex-basis: auto;
+  }
+  .box-of-flex2 {
+    /* flex: auto; */
+    flex-grow: 1;
+    flex-basis: auto;
+  }
+  .box-of-flex3 {
+    /* flex: auto; */
+    flex-grow: 1;
+    flex-basis: auto;
+  }
 }
-.box-of-flex {
-  /* flex: auto; */
-  flex-grow: 1;
-  flex-basis: auto;
+.grid {
+  display: grid;
+  width: 300px;
+  height: 300px;
+
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-areas:
+    "egg egg apple "
+    ". fish apple"
+    "pig fish .";
+  .grid1 {
+    grid-area: egg;
+  }
+  .grid2 {
+    grid-area: apple;
+  }
+  .grid3 {
+    grid-area: pig;
+  }
+  .grid4 {
+    grid-area: fish;
+  }
 }
