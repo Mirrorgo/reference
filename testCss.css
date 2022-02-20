@@ -31,3 +31,12 @@
   grid-row-start: 3;
   grid-row-end: 5;
 }
+.flex {
+  border: 1px black dotted;
+  display: flex;
+}
+.box-of-flex {
+  /* flex: auto; */
+  flex-grow: 1;
+  flex-basis: auto;
+}

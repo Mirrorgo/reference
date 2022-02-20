@@ -1,0 +1,21 @@
+.container {
+  width: 350px;
+  height: 200px;
+  margin: 20px auto;
+  border: royalblue 3px dashed;
+  position: relative;
+}
+.ball {
+  background-color: #66ccff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+.button {
+  cursor: pointer;
+  user-select: none;
+  border: 2px solid black;
+  padding: 10px 20px;
+  font-size: 20px;
+  display: inline-block;
+}

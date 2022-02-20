@@ -1,3 +1,4 @@
+// TODO: 如何直接使用链接跳转到markdown内容的位置
 布局 {
   显示 {
     display: block;
@@ -9,11 +10,11 @@
     overflow-y: auto;
   }
   浮动 {
-    float: left;
+    float: left; //仅图文环绕使用float,其他时候不要使用
     clear: both;
   }
   定位 {
-    position: relative;
+    position: relative; //position:absolute是相对于最近的非static元素定位,比如设置父元素为relative
     left: auto;
     right: inherit;
     top: auto;
@@ -33,25 +34,6 @@
     caption-side: bottom;
     empty-cells: hide;
   }
-  弹性 {
-    flex-flow: column; //👇两者的简写
-    flex-direction: column-reverse;
-    flex-wrap: nowrap;
-    justify-content: space-between; //main-axis方向
-    align-content: center; //cross-axis方向
-    /* 
-    align-content VS align-items => 对于4*4的格子中的8个物品
-    align-content:start会将物品放在 0和1 行
-    align-items:start会将物品放在 0和2 行,相当于对每个item执行了一个align-self
-     */
-    align-items: flex-end;
-    align-self: auto;
-    flex: auto; //👇三者的简写 => https://www.cnblogs.com/LangZ-/p/12703858.html⭐
-    flex-grow: inherit; // 默认为0,flex-grow为n的项目，占据的空间（放大的比例）是flex-grow为1的n倍
-    flex-shrink: initial; //默认为1,flex元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值
-    flex-basis: auto; //主轴方向上的初始大小.当一个元素同时被设置了flex-basis和 width时,flex-basis 具有更高的优先级.
-    order: unset; // 仅用于不同的视觉顺序
-  }
   多列 {
     columns: auto; //👇二者的简写
     column-width: auto;
@@ -69,11 +51,51 @@
     -webkit-column-break-after: avoid;
     -webkit-column-break-inside: auto;
   }
+  /* 
+    弹性布局和网格布局下一些单词的通用含义:
+    justify表示主轴(main-axis)方向的样式设置
+    align表示交叉轴(cross-axis)方向的样式设置
+    items表示全体元素的样式设置
+    content表示整体布局的样式设置
+    self表示自身元素的要是设置,其一定是用在子元素上的
+  */
+  弹性 {
+    /* flex子项里的margin不会合并,且浮动失效,同时子项块状化 */
+    flex-flow: column; //👇两者的简写,实际开发时,直接使用flex-flow替代以下二者
+    /* flex-direction: column-reverse; */
+    /* flex-wrap: nowrap; */
+    justify-content: space-between; //还有space-around和space-evenly
+    align-content: center; //cross-axis方向
+    /* stretch:拉伸以填充容器,但渲染的优先级小于height等属性 */
+    align-items: flex-end;
+    align-self: auto;
+    /* 
+    align-content VS align-items => 对于4*4的格子中的8个物品
+    align-content:start会将物品放在 0和1 行,相当于将all内容看作一个整体执行了align-self
+    align-items:start会将物品放在 0和2 行,相当于对每个item执行了一个align-self => 先分区,后执行align-self
+     */
+    flex: auto; //👇三者的简写 => https://www.cnblogs.com/LangZ-/p/12703858.html⭐
+    flex-grow: inherit; // 默认为0,flex-grow为n的项目，占据的空间（放大的比例）是flex-grow为1的n倍
+    flex-shrink: initial; //默认为1,flex元素仅在默认宽度之和大于容器的时候才会发生收缩，其收缩的大小是依据 flex-shrink 的值
+    flex-basis: auto; //主轴方向上的初始大小.当一个元素同时被设置了flex-basis和 width时,flex-basis 具有更高的优先级.
+    /* 
+    flex属性很有意思,隐藏了很多细节
+    
+     */
+    order: unset; // 仅用于不同的视觉顺序,默认为0,如果想要某个子项显示在最前方,设置为负数即可
+  }
   格栅 {
+    grid-template-columns: 100px, 100px, 1fr;
+    grid-template-rows: 100px, auto;
     // ⭐网格布局:http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html
     //练习:https://codepip.com/games/grid-garden/
     grid-column: auto;
     grid-row: auto;
+    grid-area: 1/1/3/3;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-row-end: 3;
+    grid-column-end: 3;
   }
 }
 尺寸 {
@@ -154,13 +176,71 @@
     resize: both; //设置是否可调节大小,包括横向纵向和both
     cursor: pointer;
     pointer-events: none; //指定在什么情况下 (如果有) 某个特定的图形元素可以成为鼠标事件的 target=>比如:鼠标指针只有再元素边界上的时候才能成为鼠标事件的target
-    touch-action: auto; //设置触摸屏用户如何操纵元素的区域
     user-select: all; //控制选中文本:点击一次选中所有/无法选中/正常
+
+    touch-action: auto; //设置触摸屏用户如何操纵元素的区域
   }
 }
 文字 {
   模式 {
-    //开始
     line-height: normal;
+    vertical-align: auto;
+    direction: ltr; //基本用不到
+    unicode-bidi: bidi-override; //基本用不到
+    writing-mode: horizontal-tb; //书写方向
+  }
+  文本 {
+    text-overflow: clip; //设置如何处理overflow的内容
+    text-decoration: dashed; //👇四者简写
+    text-decoration-line: line-through;
+    text-decoration-style: dashed;
+    text-decoration-color: aqua;
+    text-decoration-skip: edges; //比如f比较高的地方可以没有下划线
+    text-underline-position: above; //下划线的具体位置
+    text-align: center;
+    text-align-last: auto;
+    text-justify: auto;
+    text-indent: 2px; //首行缩进,为负值时突出
+    text-shadow: none;
+    text-transform: capitalize;
+    text-size-adjust: none; //控制将一些手机或平板设备上使用的文本溢出算法
+  }
+  字体 {
+    //可用于@font-face{}?待查
+    src: url("/???");
+    font: bold;
+    font-family: "Courier New", Courier, monospace; //英文字体,中文字体,通用字体族
+    font-style: italic;
+    font-stretch: condensed;
+    font-weight: bold; //不是所有字体都支持9种字重,大部分只支持两种400-normal和700-bold,找不到的时候会用最接近的来显示
+    font-variant: normal; //看不懂的一个属性
+    font-size: large;
+    font-size-adjust: none; //不太懂越font size的区别
+    color: black;
+  }
+  内容 {
+    /* word-wrap属性原本为微软的一个私有属性,在CSS3现在的文本规范草案中已被重命名为
+    overflow-wrap.word-wrap 现在被当作overflow-wrap的"别名" */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
+    word-spacing: normal; //单词间距
+    letter-spacing: normal; //字符间距
+    white-space: pre; //用于处理空白,比如合并连续空格,保留空格等等
+    caret-color: auto; //设置插入光标的颜色(就是input中的|)
+    tab-size: 3px; //🧪自定义tab宽度
+    content: normal; //TODO👈到这了
+    counter-increment: none;
+  }
+  交互属性 {
+    模式 {
+      will-change: auto;
+    }
+    变换 {
+      transform: none;
+    }
+    动画 {
+      animation: alternate;
+    }
   }
 }
