@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="target.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <div style="width: 50%; margin: 0 auto">
+        <p>
+          实际应用中存在的问题
+          锚点链接会使页面跳到目标元素的位置，造成用户体验上的不爽；
+          浏览器前进、后退时候会反复应用:target 伪类效果
+        </p>
+        <h3>目录</h3>
+        <ol>
+          <li><a href="#p1">跳到第一段!</a></li>
+          <li><a href="#p2">跳到第二段!</a></li>
+          <!-- <li><a href="#nowhere">因为目标不存在，所以这个链接毫无用处。</a></li> -->
+          <li><a href="#">因为目标不存在，所以这个链接毫无用处。</a></li>
+          <li><a href="#nav">nav</a></li>
+          <li><a href="#modal-container">弹窗</a></li>
+          <li><a href="#aside">aside</a></li>
+        </ol>
+        <h3>我的文章</h3>
+        <p id="p1">点击上面第一个链接，可以跳转到我 <i>这里</i></p>
+        <p id="p2">
+          点击上面第二个链接，同样也可以跳转到我 <i>这里。</i>爽不爽？
+        </p>
+        <div id="nav">
+          这是nav
+          <a href="#">x</a>
+        </div>
+        <div id="modal-container" style="color: white">
+          这是一个弹窗
+          <a href="#" style="color: white">x</a>
+        </div>
+      </div>
+    </main>
+    <aside id="aside">
+      这是aside
+      <a href="#" class="hide-sidebar-link">x</a>
+    </aside>
+  </body>
+</html>
