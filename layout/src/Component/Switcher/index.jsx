@@ -1,43 +1,28 @@
-// import
 import React, { useReducer } from "react";
-import { style } from "../style";
-const { displays } = style;
 
-export default function DisplayList() {
-  return displays.map((display) => (
-    <Switcher display={display} key={display.id}>
-      {(args) => <Child args={args}></Child>}
-    </Switcher>
-  ));
-}
-
-function Child({ args }) {
-  const { name } = args;
-  return (
-    <div className={`outer ${name}`}>
-      <div className="left">左侧</div>
-      <div className="right">右侧</div>
-    </div>
-  );
-}
-
-function Switcher(props) {
-  const { solution, displayName, id } = props.display;
+export default function Switcher(props) {
+  const { solution, displayName, displayId } = props.display;
   const [state, dispatch] = useReducer(reducer, {
-    max: solution.length - 1,
+    max: solution.length - 1, //为数组的长度-1
     index: 0,
   });
   return (
-    <article className={id}>
+    <article className={displayId}>
       <h1>{displayName}</h1>
       <div>
         <h3 className="inline-block">方法{state.index + 1}</h3>
-        <button onClick={() => dispatch({ type: "previous" })}>previous</button>
-        <button onClick={() => dispatch({ type: "next" })}>next</button>
+        {state.max !== 0 && (
+          <button onClick={() => dispatch({ type: "previous" })}>
+            previous
+          </button>
+        )}
+        {state.max !== 0 && (
+          <button onClick={() => dispatch({ type: "next" })}>next</button>
+        )}
         <h4 className="inline-block">class:{solution[state.index].name}</h4>
       </div>
       <div>{solution[state.index].detail}</div>
-      {props.children({ name: solution[state.index].name })}
+      {props.children({ displayId, name: solution[state.index].name })}
     </article>
   );
 }
