@@ -1,19 +1,18 @@
-import { useState } from "react";
+import React from "react";
+import ErrorBoundary from "./ErrorBoundary";
+import DisplayList from "./Component/DisplayList";
 import "./App.less";
-function App() {
-  const [count, setCount] = useState(0);
+// TODO:显示所有的css文件的内容,如何获取❓搁置
+// STAR:先熟练useReducer,之后再用immerReducer
 
+// TODO:children:暂时用不上
+function App() {
   return (
     <div className="App">
-      <article>
-        <h1>两栏布局:左侧固定+自适应</h1>
-        <div class="outer">
-          <div class="left">左侧</div>
-          <div class="right">右侧</div>
-        </div>
-      </article>
+      <ErrorBoundary>
+        <DisplayList></DisplayList>
+      </ErrorBoundary>
     </div>
   );
 }
-
 export default App;
